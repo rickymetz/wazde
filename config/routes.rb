@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   root 'users#index'
-  resources :users, only: [:index, :show]
+  # resources :users, only: [:index, :show]
+
+  get '/search', to: 'users#search'
+  get '/:id', to: 'users#show' 
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

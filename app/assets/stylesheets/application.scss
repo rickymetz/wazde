@@ -7,6 +7,42 @@ body{
 	margin:0;
 	padding:0;
 }
+
+/* remove spacing between middle columns */
+.row.no-gutter [class*='col-']:not(:first-child):not(:last-child) {
+  padding-right:0;
+  padding-left:0;
+}
+/* remove right padding from first column */
+.row.no-gutter [class*='col-']:first-child {
+  padding-right:0;
+}
+/* remove left padding from first column */
+.row.no-gutter [class*='col-']:last-child {
+  padding-left:0;
+}
+
+/*Home Header*/ 
+.home-header{
+	background-image: image_url("background-3.jpg");
+	background-size: cover;
+	width: 100%;
+	height: 25em;
+	& h1{
+		color: white;
+		text-shadow: 0 .1em RGBA(26, 22, 37, .9);
+		margin-top: 2em
+	}
+	& h2{
+		color: RGBA(122, 101, 176, 1);
+		text-shadow: 0 0.05em 10px RGBA(26, 22, 37, .9);
+	}
+}
+
+.home-search{
+	margin-top: 3em;
+}
+
 /* Nav/search bar */
 .navbar {
   min-height: 50px;
@@ -14,6 +50,12 @@ body{
   border: 0px solid transparent;
   border-radius: 0;
   background-color: RGBA(26, 22, 37, .9);
+
+}
+
+.navbar-brand{
+	font-family: 'Orbitron', sans-serif;
+	font-weight: bold;
 }
 span{
 	color: RGBA(122, 101, 176, 1);
@@ -27,14 +69,10 @@ h1{
 	text-shadow: 0 .1em #ffffff;
 }
 .profile{
-	margin: 0;
 	padding: 0;
 }
 .user_background{
-	background-image:url(/assets/background-3.jpg);
-	background-size: cover;
-	width: 100%;
-	height: 25em;
+	@extend .home-header;
 }
 .user_info{
 	margin-top: -10em;
