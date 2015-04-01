@@ -2,13 +2,16 @@ require 'steam-condenser'
 
 class UsersController < ApplicationController
   def index
-  	if params[:search]
-      	search = params[:search].gsub(' ', '+')
+    
+  end
+  def show
+  	if params[:id]
+      	search = params[:id].gsub(' ', '+')
       	# @user = SteamId.resolve_vanity_url(search)
 
         # steam_id = SteamId.resolve_vanity_url(search)
 
-        # WebApi.api_key = "210A1FCA770E55BDE2E4C8950A2B873B"
+        WebApi.api_key = "210A1FCA770E55BDE2E4C8950A2B873B"
         # output = WebApi.json! 'ISteamUser', 'GetOwnedGames', 1, { :steamids => steam_id.to_s}
         @user_name = search.gsub('+', ' ')
         @user = SteamId.new(search)
@@ -23,9 +26,6 @@ class UsersController < ApplicationController
     else
       nil
   	end	
-  end
-
-  def show
   end
 
 end
