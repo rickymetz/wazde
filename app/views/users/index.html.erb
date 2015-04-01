@@ -1,0 +1,65 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        WAZDE
+      </a>
+    </div>
+    <form action="/users" method="get" class="navbar-form navbar-right" role="search">
+	  <div class="form-group">
+	    <input type="text" name="search" class="form-control" placeholder="Search">
+	  </div>
+	  <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+  </div>
+</nav>
+
+<div class="container-fluid profile">
+	<div class="row">
+		<div class="col-sm-12 text-center">
+			<div class="user_background"></div>
+			<!-- Change this default image -->
+			<div class="user_info">
+				<img class="user_image" src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/91/91d6e5faad6bfa182ead34afc650b573fa8784f6_full.jpg">
+				<h1><%= @user.nickname %></h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row profile_info">
+		<div class="col-sm-12 col-md-6 text-center">
+			<h3>Member Since: <span><%= @user.member_since.strftime("%m/%d/%Y")%></span></h3>
+		</div>
+		<div class="col-sm-12 col-md-6 text-center">
+			<h3>Last Online<span><%= @user.state_message.gsub('Last Online:', '')%></span></h3>
+		</div>
+	</div>
+
+	<div class="row jumbotron">
+		<div class="col-sm-12 text-center games_owned">
+			<h3>Total Games Owned: <span><%= @user.games.count%></span></h3>
+		</div>
+		<div class="col-sm-12 text-center">	
+			<ul>
+			<div class="row">
+				<%@user.games.each do |index,game| %>
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 text-center">
+						<li class="game_entry center-block">
+							<!-- Change this default image -->
+							<%= link_to image_tag("http://media.steampowered.com/steamcommunity/public/images/apps/730/d0595ff02f5c79fd19b06f4d6165c3fda2372820.jpg"), "http://store.steampowered.com/app/#{game.app_id}/" %>
+							<h4><%= game.name %></h4>
+						</li>
+					</div>
+				<% end %>
+			</div>
+			</ul>
+		</div>
+	</div>
+	<div class="row footer">
+		<div class="col-sm-12 text-center">
+			<h3>Steam ID: <span><%= @user.steam_id64%></span></h3>
+		</div>		
+	</div>
+</div>
