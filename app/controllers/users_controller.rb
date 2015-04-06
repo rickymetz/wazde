@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         # WebApi.api_key = "210A1FCA770E55BDE2E4C8950A2B873B"
         # output = WebApi.json! 'ISteamUser', 'GetOwnedGames', 1, { :steamids => steam_id.to_s}
         @user_name = search.gsub('+', ' ')
-        @user = SteamId.new(search)
+        @user = SteamId.new(search) 
         @nickname= @user.nickname
         @played_times = @user.games.map do |key, game|
           {name: game.name,
@@ -28,6 +28,9 @@ class UsersController < ApplicationController
     else
       nil
   	end	
+    rescue SteamCondenserError 
+      flash[:alert] = "User could not be found, or is private"
+      redirect_to index
   end
 
   def index

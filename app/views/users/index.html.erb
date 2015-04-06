@@ -10,6 +10,9 @@
 <div class="container">
 	<div class="row jumbotron home-search">
 		<div class="col-sm-12 text-center games_owned">
+		    <% flash.each do |name, msg| -%>
+      			<%= content_tag :div, msg, class: "#{name} alert-danger" %>
+    		<% end -%>
 			<h3>Search for a Steam User</h3>
 			<small>User must have profile set to public to view</small>
 		</div>
