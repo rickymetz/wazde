@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       nil
   	end	
     rescue SteamCondenserError 
-      flash[:alert] = "User could not be found, or is private"
+      flash[:alert] = "User could not be found, or has profile set to private."
       redirect_to index
   end
 
